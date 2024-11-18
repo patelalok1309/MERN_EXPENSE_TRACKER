@@ -1,0 +1,12 @@
+node_modules
+./node_modules
+
+.env
+
+# remove prettier and eslint configuration files from gitignore
+.prettierrc
+.prettierignore
+
+.eslintrc
+.eslintrc.json
+

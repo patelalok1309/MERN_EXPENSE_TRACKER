@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
+import Income from './income.model.js';
 
 const accountSchema = new mongoose.Schema({
 	name: {
@@ -28,6 +29,26 @@ const accountSchema = new mongoose.Schema({
 	imageUrl: {
 		type: String,
 	},
+	incomes: [
+		{
+			type: Schema.Types.ObjectId,
+			ref: 'Income',
+		},
+	],
 });
+
+accountSchema.pre(
+	'deleteOne',
+	{ document: true, query: false },
+	async function (next) {
+		try {
+			// Delete all the incomes associated with this account
+			await Income.deleteMany({ account: this._id });
+			next();
+		} catch (error) {
+			next(error);
+		}
+	}
+);
 
 export const Account = mongoose.model('Account', accountSchema);

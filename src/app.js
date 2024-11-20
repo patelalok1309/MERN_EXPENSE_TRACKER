@@ -8,7 +8,7 @@ const app = express();
 // Routes imports
 import authRoutes from './routes/auth.route.js';
 import accountRoutes from './routes/account.route.js';
-import { verifyJWT } from './middlewares/auth.middleware.js';
+import incomeRoutes from './routes/income.route.js';
 
 // Middlewares
 app.use(
@@ -30,7 +30,7 @@ app.get('/check-health', (req, res) => {
 // Route Declarations
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/account', accountRoutes);
-app.use('/api/v1/account', accountRoutes);
+app.use('/api/v1/income', incomeRoutes);
 
 // ApiError Middleware
 app.use(errorHandler);

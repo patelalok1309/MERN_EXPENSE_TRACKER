@@ -51,6 +51,11 @@ const userSchema = new mongoose.Schema({
 		ref: 'Account',
 		default: [],
 	},
+	incomes: {
+		type: [mongoose.Schema.Types.ObjectId],
+		ref: 'Income',
+		default: [],
+	},
 });
 
 userSchema.pre('save', async function (next) {
